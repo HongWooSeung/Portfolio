@@ -14,7 +14,7 @@ $(document).ready(function(){
 				$gr_parent.hide(); // 부모를 숨기면 자식도 같이 숨겨짐
 			} else {
 				$gr_parent.show();
-				deg[index] += 0.7;
+				deg[index] += 0.5;
 			}
 
 			// 2. 부모(work_orb) 회전
@@ -196,4 +196,5 @@ $(document).ready(function(){
 		
 	startAutoSlide();
 	
+
 });
