@@ -1,0 +1,229 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: 'Wave';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2404@1.0/WavvePADO-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-display: swap;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Wave', sans-serif; /* 이름 일치시킴 */
+    color: #ff7e00;
+}
+
+ul{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+}
+
+img{
+    vertical-align: top;
+}
+
+body{
+    margin: 0 auto;
+    padding: 0;
+    overflow-x: hidden;
+    width: 100%;
+    min-height: 100vh;
+}
+
+
+
+
+/* [중요] 미디어 쿼리 수정: px 대신 비율 유지 혹은 제거 */
+@media (max-width: 1024px) {
+  .wrap { 
+      /* 자바스크립트 계산식과 충돌하므로 고정 px 사용을 지양하세요 */
+      width : 100%;
+      height : 285vw; 
+  }
+}
+
+.cf::after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+.fl{
+	float: left;
+}
+
+
+/* 여기까지 기본설정 */
+
+.wrap{
+    width: 100%;
+	height: 285vw;
+    background-image: url(../images/sub2_background.jpg); 
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top center;
+    position: relative;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    margin: 0 auto;
+    transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+    
+    /* 2. 브라우저에게 애니메이션 최적화를 미리 요청 (성능 향상) */
+    will-change: transform;
+}
+
+.header{
+    width: fit-content;
+    height: 50px;
+    margin: 0;
+
+    float: left;
+    
+    position: fixed; /* 원스크롤 페이지이므로 상단 고정 */
+     top: 2%;
+     left: 3%;
+
+     z-index: 99999; /* 궤도와 섹션보다 항상 위에 */
+}
+
+.header h1{
+    font-size: 24px;
+    font-weight: normal;
+     z-index: 99999; /* 궤도와 섹션보다 항상 위에 */
+}
+
+.menu{
+    font-size: 24px;
+    width: fit-content;
+    height: 50px;
+    margin: 0;
+    font-size: 24px;
+     top: 2%;
+    right: 3%;
+     z-index: 99999; /* 궤도와 섹션보다 항상 위에 */
+    position: fixed; 
+}
+
+.menu ul{
+    display: flex;
+    gap:60px;
+}
+
+
+.header a, 
+.menu a{
+    transition: all 0.3 ease;
+    text-decoration: none;
+}
+
+.header a:hover,
+.menu a:hover {
+    text-shadow: 
+        0 0 10px #ff7e00, 
+        0 0 20px #ff7e00;
+}	
+
+
+
+
+/* 부모가 되는 li 설정 */
+.menu ul li.contact-item {
+    position: relative; /* 연락처 창의 기준점이 됨 */
+}
+
+/* 연락처 창 기본 상태 (숨김) */
+.contact-layer {
+    position: absolute;
+    top: 50px;       /* 메뉴 글자 아래로 배치 */
+    right: 0;        /* 메뉴 오른쪽에 맞춤 */
+    width: 250px;    /* 창 너비 */
+    padding: 20px;
+    background:#011e32; /* 가독성을 위해 어두운 배경 */
+    border: 1px solid #ff7e00;       /* 포인트 컬러 테두리 */
+    border-radius: 10px;
+    
+    /* 애니메이션 효과 */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.4s ease;
+    
+    z-index: 100000;
+}
+
+/* 연락처 창 안의 텍스트 스타일 */
+.contact-layer p {
+    font-size: 16px;
+    margin: 10px 0;
+    color: #ff7e00; /* 기존 폰트 컬러와 통일 */
+    white-space: nowrap;
+}
+
+/* 호버 시 나타나게 하는 로직 */
+.contact-item:hover .contact-layer {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* 말풍선 꼬리 추가 (디테일) */
+.contact-layer::after {
+    content: '';
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #ff7e00;
+}
+
+
+/* 여기까지 헤더 */
+
+
+section {
+    width: 100%;
+    /* (전체높이 285vw - 푸터 4.67vw) / 6 */
+    height: calc((285vw - 4.67vw) / 6);
+}
+footer{
+    width: 100%;
+    height: 4.67vw; /* 90px에 해당하는 비율 */
+
+}
+
+.btn_top {
+    position: fixed;    /* 화면에 고정 */
+    z-index: 100000;    /* 최상단 레이어 */
+    
+    /* 위치: 화면 우측/하단에서 각각 3%씩 띄움 */
+    right: 3%;
+    bottom: 3%;
+    
+    /* 크기: 계산하신 84px 비율값 적용 */
+    width: 4.375%; 
+    max-width: 84px;    /* 너무 커지는 것 방지 */
+    min-width: 50px;    /* 너무 작아지는 것 방지 */
+    aspect-ratio: 1 / 1; 
+    
+    display: block;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.btn_top img {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* 호버 효과 */
+.btn_top:hover {
+    transform: scale(1.1); /* 살짝 커지게 */
+    filter: drop-shadow(0 0 10px #ffffff);
+}
